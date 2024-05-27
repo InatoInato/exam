@@ -18,5 +18,9 @@ export default{
 </template>
 
 <style>
-
+header{
+    margin-top: 0;
+  background-color: gray;
+  text-align: center;
+}
 </style>

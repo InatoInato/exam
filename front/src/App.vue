@@ -7,9 +7,6 @@ export default{
 
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Start</router-link>
-    </nav>
     <router-view></router-view>
   </div>
 </template>
