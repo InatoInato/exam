@@ -1,26 +1,46 @@
 <script>
-export default{
-    name: "Start"
+export default {
+  name: "Start"
 }
 </script>
 
 <template>
 <header>
-    <h1>Marathon Skills 2024</h1>
-    <p>Almaty, Kazakhstan</p>
-    <p>12 june 2024</p>
+  <h1>Marathon Skills 2024</h1>
+  <p>Almaty, Kazakhstan</p>
+  <p>12 june 2024</p>
 </header>
 <main>
-    <a href="/runner"><button type="button">Я хочу стать бегуном</button></a>
-    <a href="/sponsor"><button type="button">Я хочу стать спонсором бегуна</button></a>
-    <a href="/events"><button type="button">Я хочу узнать больше о событий</button></a>
+  <div class="buttons">
+    <router-link to="/runner">Я хочу стать бегуном</router-link>
+    <router-link to="/sponsor">Я хочу стать спонсором бегуна</router-link>
+    <router-link to="/events">Я хочу узнать больше о событиях</router-link>
+    <div>
+      <router-link to="/login" class="log">Login</router-link>
+    </div>
+  </div>
 </main>
 </template>
 
 <style>
-header{
-    margin-top: 0;
-  background-color: gray;
-  text-align: center;
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
+.log{
+  bottom: 0;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: rgb(206, 206, 206);
+  padding: 10px;
+  position: absolute;
+  left: 750px;
+}
+
 </style>
