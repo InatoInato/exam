@@ -3,7 +3,7 @@ export default{
     name: "NavBar",
     methods: {
         back(){
-            this.$route.go(-1)
+            this.$router.go(-1)
         }
     }
 }
@@ -12,10 +12,7 @@ export default{
 <template>
     <div class="navbar">
         <header>
-            <div class="links">
-                <router-link @click="back">Back</router-link>
-                <router-link to="/">Home</router-link>
-            </div>
+            <router-link to="/">Home</router-link>
             <h3>Marathon skills 2024</h3>
         </header>
     </div>
