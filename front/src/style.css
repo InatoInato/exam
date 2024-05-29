@@ -24,12 +24,16 @@ h3 {
   font-size: 30px;
 }
 
-button, input {
-  width: 300px;
+button, input, select {
   padding: 5px 10px;
   margin: 10px 0;
   border: 1px solid #000;
   border-radius: 10px;
+  height: 30px;
+}
+
+input{
+  width: 300px;
 }
 
 button{
