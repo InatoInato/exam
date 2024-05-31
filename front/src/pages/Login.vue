@@ -1,6 +1,40 @@
 <script>
-export default{
-    name: "Login"
+import axios from 'axios';
+
+export default {
+    name: "Login",
+    data() {
+        return {
+            email: '',
+            password: '',
+            role: ''
+        };
+    },
+    methods: {
+        async login() {
+            if (!this.email || !this.password || !this.role) {
+                alert("Fill all fields");
+                return;
+            }
+            try {
+                const response = await axios.post('http://localhost:3000/api/users/register', {
+                    email: this.email,
+                    password: this.password,
+                    role: this.role
+                });
+                alert(response.data.message);
+            } catch (error) {
+                if (error.response) {
+                    alert(error.response.data.error);
+                } else {
+                    alert('An error occurred. Please try again.');
+                }
+            }
+            this.email = ''
+            this.password = ''
+            this.role = ''
+        }
+    }
 }
 </script>
 
@@ -8,23 +42,24 @@ export default{
 <main>
     <div class="logs">
         <h1>Login</h1>
-        <input type="email" placeholder="Enter your email">
-        <input type="password" placeholder="Enter your password">
+        <p></p>
+        <input type="email" v-model="email" placeholder="Enter your email">
+        <input type="password" v-model="password" placeholder="Enter your password">
         <div class="button">
-            <button type="submit" class="but">Login</button>
-            <select id="login_as" class="but">
-                <option selected disabled>Войти как</option>
+            <select v-model="role" class="but">
+                <option selected disabled value="">Войти как</option>
                 <option value="runner">Бегун</option>
-                <option value="">Координатор</option>
-                <option value="">Администратор</option>
+                <option value="coordinator">Координатор</option>
+                <option value="administrator">Администратор</option>
             </select>
+            <button type="submit" class="but" @click="login">Register</button>
         </div>
     </div>
 </main>
 </template>
 
 <style>
-.but{
+.but {
     margin: 10px 30px;
     width: 100px;
 }

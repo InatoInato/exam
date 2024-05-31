@@ -1,19 +1,17 @@
-const express = require('express')
-const port = 3000
-const path = require('path')
-const app = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const routes = require('./routes/router.js');
+const cors = require('cors')
 
-app.use(express.json())
-app.use(express.static(path.join(__dirname, 'public')))
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.send("Hello")
-})
 
-app.listen(port, () => {
-    try{
-        console.log(`Started in http://localhost:${port}`);
-    } catch(err){
-        console.log(err);
-    }
-})
+app.use(cors())
+app.use(bodyParser.json());
+app.use('/api/users', routes);
+
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
