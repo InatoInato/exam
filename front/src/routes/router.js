@@ -4,7 +4,8 @@ import Runner from '../pages/Runner/Runner.vue'
 import Sponsor from '../pages/Sponsor.vue'
 import Events from '../pages/Events.vue'
 import Login from '../pages/Login.vue'
-import RegRunner from '../pages/Runner/RegRunner.vue'
+import NewRunner from '../pages/Runner/NewRunner.vue'
+import MenuRunner from '../pages/Runner/MenuRunner.vue'
 
 const routes= [
     {
@@ -33,9 +34,14 @@ const routes= [
         component: Login
     },
     {
-        path: '/regrunner',
-        name: 'Regrunner',
-        component: RegRunner
+        path: '/newrunner',
+        name: 'NewRunner',
+        component: NewRunner
+    },
+    {
+        path: '/menurunner',
+        name: 'MenuRunner',
+        component: MenuRunner
     }
 ]
 

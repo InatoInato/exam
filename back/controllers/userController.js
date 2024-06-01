@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const { getUserByEmail, addUser } = require('../models/userModels.js');
 const bcrypt = require('bcryptjs');
 
@@ -13,14 +11,14 @@ const register = async (req, res) => {
   try {
     const existingUser = await getUserByEmail(email);
     if (existingUser) {
-      return res.status(400).json({ error: 'Этот пользователь уже существует. Пожалуйста, войдите.' });
+      return res.status(400).json({ error: 'Этот пользователь уже существует!' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await addUser({ email, password: hashedPassword, role });
     res.status(201).json({ message: 'Пользователь успешно зарегистрирован', user: newUser });
   } catch (err) {
-    console.error('Error during registration:', err);  // Логируем ошибку
+    console.error('Error during registration:', err);
     res.status(500).json({ error: err.message });
   }
 };
