@@ -10,7 +10,7 @@ const addRunner = async ({email, password, name, lastname, gender, photoPath, bi
 }
 
 const getRunnerByEmail = async (email) => {
-    const query = 'INSERT INTO users (email, password, role) VALUES($1, $2, $3) RETURNING *'
+    const query = 'SELECT * FROM runner WHERE email = $1'
     const values = [email]
     const {rows} = await pool.query(query, values)
     return rows[0]

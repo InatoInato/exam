@@ -1,15 +1,25 @@
-const {addRunner, getRunnerByEmail} = require('../models/runnerModels.js')
+const runnerModels = require('../models/runnerModels.js');
+const bcrypt = require('bcryptjs')
 
-const register = async (req, res) => {
-    const {email, password, name, lastname, gender, photoPath, birth, country} = req.body
+const newRunner = async (req, res) => {
+    const { email, password, name, lastname, gender, photoPath, birth, country } = req.body;
 
-    if(!email, !password, !name, !lastname, !gender, !photoPath, !birth, !country){
-        res.status(400).json({message: 'Fill all the poles'})
+    if (!email || !password || !name || !lastname || !gender || !photoPath || !birth || !country) {
+        res.status(400).json({ message: 'Fill all the fields' });
     }
 
-    try{
-
-    } catch(e){
-        console.log(e);
+    try {
+        const existing = await runnerModels.getRunnerByEmail(email); 
+        if (existing) {
+            res.status(400).json({ error: "The runner is already exists" });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newRunner = await runnerModels.addRunner({ email, password: hashedPassword, name, lastname, gender, photoPath, birth, country });
+        res.status(201).json({ message: 'Success!!!' });
+    } catch (e) {
+        res.status(500).json({ e: e.message });
     }
 }
+
+
+module.exports = { newRunner };
